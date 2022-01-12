@@ -3,7 +3,7 @@ const request = require('request');
 async function youtube(query, key, pageToken, searchChannel) {
     return new Promise((resolve, reject) => {
         let json = { results: [], version: require('./package.json').version };
-        let isChannelSearch = searchChannel !== undefined &7 searchChannel == true;
+        let isChannelSearch = searchChannel !== undefined && searchChannel == true;
         // Specify YouTube search url
         if (key) {
             json["parser"] = "json_format.page_token";
