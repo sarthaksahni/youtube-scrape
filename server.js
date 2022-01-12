@@ -15,7 +15,7 @@ app.get('/api/search', (req, res) => {
 });
 
 app.get('/api/search/channel', (req, res) => {
-    scraper.youtube(req.query.q, req.query.key, req.query.pageToken, True)
+    scraper.youtube(req.query.q, req.query.key, req.query.pageToken, true)
         .then(x => res.json(x))
         .catch(e => res.send(e));
 });
