@@ -14,6 +14,12 @@ app.get('/api/search', (req, res) => {
         .catch(e => res.send(e));
 });
 
+app.get('/api/search/channel', (req, res) => {
+    scraper.youtube(req.query.q, req.query.key, req.query.pageToken, True)
+        .then(x => res.json(x))
+        .catch(e => res.send(e));
+});
+
 app.listen(process.env.PORT || 8080, function () {
   console.log('Listening on port 8080');
 });
