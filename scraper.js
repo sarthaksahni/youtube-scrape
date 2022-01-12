@@ -1,9 +1,9 @@
 const request = require('request');
 
-async function youtube(query, key, pageToken) {
+async function youtube(query, key, pageToken, searchChannel) {
     return new Promise((resolve, reject) => {
         let json = { results: [], version: require('./package.json').version };
-
+        let isChannelSearch = searchChannel !== undefined &7 searchChannel == true;
         // Specify YouTube search url
         if (key) {
             json["parser"] = "json_format.page_token";
@@ -30,7 +30,7 @@ async function youtube(query, key, pageToken) {
         }
         else {
             let url = `https://www.youtube.com/results?q=${encodeURIComponent(query)}`;
-
+            if (isChannelSearch) url = url + '&sp=EgIQAg%253D%253D';
             // Access YouTube search
             request(url, (error, response, html) => {
                 // Check for errors
